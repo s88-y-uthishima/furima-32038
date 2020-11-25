@@ -2,16 +2,16 @@
 
 ## user テーブル
 
-| Column          | Type   | Options                   |
-| --------------- | ------ | ------------------------- |
-| nickname        | string | null: false               |
-| email           | string | null: false, unique: true |
-| password        | string | null: false               |
-| last_name       | string | null: false               |
-| first_name      | string | null: false               |
-| last_name_kana  | string | null: false               |
-| first_name_kana | string | null: false               |
-| birthday        | date   | null: false               |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
+| birthday           | date   | null: false               |
 
 ### Association
 
@@ -20,17 +20,17 @@
 
 ## item テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| item_name        | string     | null: false                    |
-| description      | text       | null: false                    |
-| category         | string     | null: false                    |
-| condition        | string     | null: false                    |
-| cost_beaver      | string     | null: false                    |
-| shipment_area    | string     | null: false                    |
-| preparation_days | string     | null: false                    |
-| price            | integer    | null: false                    |
-| user             | references | null: false, foreign_key: true |
+| Column              | Type       | Options                        |
+| ------------------- | ---------- | ------------------------------ |
+| item_name           | string     | null: false                    |
+| description         | text       | null: false                    |
+| category_id         | integer    | null: false                    |
+| condition_id        | integer    | null: false                    |
+| cost_beaver_id      | integer    | null: false                    |
+| shipment_area_id    | integer    | null: false                    |
+| preparation_days_id | integer    | null: false                    |
+| price               | integer    | null: false                    |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :user
@@ -51,13 +51,15 @@ has_one :address
 
 ## address テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| post_code     | integer | null: false |
-| prefecture    | string  | null: false |
-| city          | string  | null: false |
-| building      | string  |             |
-| phone_number  | integer | null: false |
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| post_code     | integer    | null: false                    |
+| prefecture_id | integer    | null: false                    |
+| city          | string     | null: false                    |
+| address_line  | string     | null: false                    |
+| building      | string     |                                |
+| phone_number  | integer    | null: false                    |
+| purchase      | references | null: false, foreign_key: true |
 
 ### Association
 belongs_to :purchase
