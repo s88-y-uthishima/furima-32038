@@ -1,14 +1,22 @@
 class Item < ApplicationRecord
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :cost_beaver
+  belongs_to :shipment_area
+  belongs_to :preparation_days
+
   validates :name, presence: true
   validates :description, presence: true
-  validates :category_id, presence: true
-  validates :condition_id, presence: true
-  validates :cost_beaver_id, presence: true
-  validates :shipment_area_id, presence: true
-  validates :preparation_days_id, presence: true
+  validates :category_id, numericality: { other_than: 0 }
+  validates :condition_id, numericality: { other_than: 0 }
+  validates :cost_beaver_id, numericality: { other_than: 0 }
+  validates :shipment_area_id, numericality: { other_than: 0 }
+  validates :preparation_days_id, numericality: { other_than: 0 }
   validates :price, presence: true
   validates :image, presence: true
 
   belongs_to :user
   has_one_attached :image
+
 end
