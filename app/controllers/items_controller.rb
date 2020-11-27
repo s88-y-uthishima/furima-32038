@@ -10,4 +10,8 @@ class ItemsController < ApplicationController
       redirect_to '/users/sign_in'
     end
   end
+
+  def create
+    @item = Item.create
+  end
 end
