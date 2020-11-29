@@ -13,12 +13,9 @@ class Item < ApplicationRecord
   validates :cost_beaver_id, numericality: { other_than: 0 }
   validates :shipment_area_id, numericality: { other_than: 0 }
   validates :preparation_days_id, numericality: { other_than: 0 }
-  validates :price, presence: true, inclusion: {in: 300..9999999999 }
+  validates :price, presence: true, inclusion: { in: 300..9_999_999_999 }
   validates :image, presence: true
-
- 
 
   belongs_to :user
   has_one_attached :image
-
 end
