@@ -6,15 +6,20 @@ class Item < ApplicationRecord
   belongs_to :shipment_area
   belongs_to :preparation_days
 
-  validates :name, presence: true
-  validates :description, presence: true
-  validates :category_id, numericality: { other_than: 0 }
-  validates :condition_id, numericality: { other_than: 0 }
-  validates :cost_beaver_id, numericality: { other_than: 0 }
-  validates :shipment_area_id, numericality: { other_than: 0 }
-  validates :preparation_days_id, numericality: { other_than: 0 }
-  validates :price, presence: true, inclusion: { in: 300..9_999_999_999 }
-  validates :image, presence: true
+  with_options presence: true do
+    validates :name
+    validates :description
+    validates :price,      inclusion: { in: 300..9_999_999_999 }
+    validates :image
+  end
+
+  with_options numericality: { other_than: 0 } do
+    validates :category_id
+    validates :condition_id
+    validates :cost_beaver_id
+    validates :shipment_area_id
+    validates :preparation_days_id
+  end
 
   belongs_to :user
   has_one_attached :image

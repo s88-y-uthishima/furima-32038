@@ -7,7 +7,7 @@ FactoryBot.define do
     cost_beaver_id      { 1 }
     shipment_area_id    { 1 }
     preparation_days_id { 1 }
-    price               { '500' }
+    price               { 500 }
     association :user
 
     after(:build) do |item|
