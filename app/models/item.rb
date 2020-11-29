@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   with_options presence: true do
     validates :name
     validates :description
-    validates :price,      inclusion: { in: 300..9_999_999_999 }
+    validates :price, inclusion: { in: 300..9_999_999_999 }
     validates :image
   end
 
