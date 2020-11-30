@@ -7,8 +7,8 @@ class Item < ApplicationRecord
   belongs_to :preparation_days
 
   with_options presence: true do
-    validates :name
-    validates :description
+    validates :name, length: { maximum: 40 }
+    validates :description, length: { maximum: 1000 }
     validates :price, inclusion: { in: 300..9_999_999 }
     validates :image
   end
