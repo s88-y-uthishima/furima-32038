@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_item 
+  before_action :set_item
   before_action :move_to_index
 
   def index
@@ -9,16 +9,17 @@ class PurchasesController < ApplicationController
 
   def create
     @order_form = OrderForm.new(set_params)
-    if @order_form.valid?  
+    if @order_form.valid?
       pay_item
       @order_form.save
       redirect_to root_path
     else
       render :index
-    end 
+    end
   end
 
   private
+
   def set_params
     params.require(:order_form).permit(:post_code, :prefecture_id, :city, :address_line, :building, :phone_number, :purchase_id).merge(user_id: current_user.id, item_id: @item.id, token: params[:token])
   end
@@ -28,13 +29,11 @@ class PurchasesController < ApplicationController
   end
 
   def move_to_index
-    if current_user.id == @item.user_id || @item.purchase.present?
-      redirect_to root_path
-    end
+    redirect_to root_path if current_user.id == @item.user_id || @item.purchase.present?
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: set_params[:token],

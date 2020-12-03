@@ -24,14 +24,14 @@ RSpec.describe OrderForm, type: :model do
           expect(@order_form.errors.full_messages).to include("Post code can't be blank")
         end
         it '郵便番号にハイフンが入ってないとき' do
-          @order_form.post_code = "1234567"
+          @order_form.post_code = '1234567'
           @order_form.valid?
-          expect(@order_form.errors.full_messages).to include("Post code is invalid")
+          expect(@order_form.errors.full_messages).to include('Post code is invalid')
         end
         it '都道府県が選択されていないとき' do
           @order_form.prefecture_id = 0
           @order_form.valid?
-          expect(@order_form.errors.full_messages).to include("Prefecture must be other than 0")
+          expect(@order_form.errors.full_messages).to include('Prefecture must be other than 0')
         end
         it '市町村が書かれていないとき' do
           @order_form.city = nil
@@ -51,7 +51,7 @@ RSpec.describe OrderForm, type: :model do
         it '電話番号にハイフンが書かれ、11桁を超えているとき' do
           @order_form.phone_number = '090-1234-5678'
           @order_form.valid?
-          expect(@order_form.errors.full_messages).to include("Phone number is invalid")
+          expect(@order_form.errors.full_messages).to include('Phone number is invalid')
         end
       end
     end
