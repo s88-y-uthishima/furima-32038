@@ -63,3 +63,5 @@ has_one :address
 
 ### Association
 belongs_to :purchase
+
+# 空コミット
